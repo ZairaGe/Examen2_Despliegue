@@ -27,3 +27,4 @@ jobs:
           source: "dist/examen2-despliegue/browser/*"
           target: "/var/www/html/examen"
           strip_components: 3
+#FIN
