@@ -23,8 +23,8 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          # Esta ruta busca cualquier carpeta dentro de dist para evitar errores de nombre
-          source: "dist/*/browser/*"
+          # El asterisco doble (**) busca en cualquier subcarpeta dentro de dist
+          source: "dist/**/browser/*"
           target: "/var/www/html/examen"
-          # Quitamos las carpetas dist, nombre-proyecto y browser para que solo pegue el contenido
+          # Subimos el strip_components a 3 para saltar: dist -> nombre-proyecto -> browser
           strip_components: 3
