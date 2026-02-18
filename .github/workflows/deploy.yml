@@ -2,8 +2,7 @@ name: Deploy Angular
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build-and-deploy:
@@ -24,7 +23,8 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          source: "dist/examen2-despliegue/browser/*"
+          # Esta ruta busca cualquier carpeta dentro de dist para evitar errores de nombre
+          source: "dist/*/browser/*"
           target: "/var/www/html/examen"
+          # Quitamos las carpetas dist, nombre-proyecto y browser para que solo pegue el contenido
           strip_components: 3
-
