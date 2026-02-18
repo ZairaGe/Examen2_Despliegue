@@ -23,7 +23,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          # El asterisco busca CUALQUIER nombre de proyecto
           source: "dist/*/browser/*"
           target: "/var/www/html/examen"
           strip_components: 3
+	  overwrite: true
