@@ -1,4 +1,4 @@
-name: Deploy Angular
+name: Despliegue Final Examen
 
 on:
   push:
