@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy Angular
 
 on:
   push:
@@ -8,16 +8,16 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout del codigo
         uses: actions/checkout@v3
 
-      - name: Install
+      - name: Instalar dependencias
         run: npm ci
 
-      - name: Build
+      - name: Compilar proyecto
         run: npm run build -- --configuration production
 
-      - name: Deploy to VPS
+      - name: Enviar archivos al VPS
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.HOST }}
