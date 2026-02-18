@@ -17,14 +17,19 @@ jobs:
       - name: Compilar proyecto
         run: npm run build -- --configuration production
 
+      # Paso extra para que veas en los logs qué carpetas se han creado (ayuda para el informe)
+      - name: Listar archivos generados
+        run: ls -R dist/
+
       - name: Enviar archivos al VPS
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          port: 22
-          source: "dist/examen2-despliegue/browser/*"
+          # El truco: buscamos CUALQUIER cosa dentro de dist que acabe en browser
+          source: "dist/**/browser/*"
           target: "/var/www/html/examen"
+          # Subimos esto a 3 para quitar: 1(dist) / 2(nombre-proyecto) / 3(browser)
           strip_components: 3
-#FIN
+
